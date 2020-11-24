@@ -1,0 +1,22 @@
+{
+  "name": "vueandpolymer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thekanon/vueandpolymer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thekanon/vueandpolymer/issues"
+  },
+  "homepage": "https://github.com/thekanon/vueandpolymer#readme",
+  "dependencies": {
+    "vue-cli": "^2.9.6"
+  }
+}
