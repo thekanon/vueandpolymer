@@ -2,10 +2,10 @@
   <v-app>
     <v-app-bar
       app
-      color="rgb(255 5 88)"
-      dark
+      color="white"
     >
-      <v-spacer><h1>MBTI 설문</h1></v-spacer>
+      <div class="pink--text font-weight-black" tile><subtitle-1>WATCHA!</subtitle-1></div>
+      <v-spacer><h1 class="pink--text">설문 등록</h1></v-spacer>
     </v-app-bar>
 
     <v-main>
