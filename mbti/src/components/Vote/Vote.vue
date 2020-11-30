@@ -1,7 +1,6 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="80%"
     outlined
   >
       <v-list>
@@ -14,14 +13,17 @@
         </v-list-item-title>
         <v-list-item-group
         v-model="selectedItem"
-        color="primary"
+        color="pink"
       >
         <v-list-item
           v-for="(item, i) in options"
+          :style="{
+               'display': 'inline-table'
+          }"
           :key="i"
         >
           <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
+            <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title v-text="item.label"></v-list-item-title>
@@ -46,20 +48,21 @@ export default {
     lowerVote : "",
     optionCount : 14,
     options: [
-        {id: "val1", label : "ISFJ", select:false},
-        {id: "val2", label : "INTJ", select:false},
-        {id: "val3", label : "ISTP", select:false},
-        {id: "val4", label : "ISFP", select:false},
-        {id: "val5", label : "INFP", select:false},
-        {id: "val6", label : "INTP", select:false},
-        {id: "val7", label : "ESTP", select:false},
-        {id: "val8", label : "ESFP", select:false},
+        {id: "val1", label : "무응답", select:false},
+        {id: "val2", label : "ISFJ", select:false},
+        {id: "val3", label : "INTJ", select:false},
+        {id: "val4", label : "ISTP", select:false},
+        {id: "val5", label : "ISFP", select:false},
+        {id: "val6", label : "INFP", select:false},
+        {id: "val7", label : "INTP", select:false},
+        {id: "val8", label : "ESTP", select:false},
         {id: "val9", label : "ESFP", select:false},
-        {id: "val10", label : "ENFP", select:false},
-        {id: "val11", label : "ENTP", select:false},
-        {id: "val12", label : "ESTJ", select:false},
-        {id: "val13", label : "ESFJ", select:false},
-        {id: "val14", label : "ENTJ", select:false},
+        {id: "val10", label : "ESFP", select:false},
+        {id: "val11", label : "ENFP", select:false},
+        {id: "val12", label : "ENTP", select:false},
+        {id: "val13", label : "ESTJ", select:false},
+        {id: "val14", label : "ESFJ", select:false},
+        {id: "val15", label : "ENTJ", select:false},
     ],
     selectedItem: 1,
       items: [

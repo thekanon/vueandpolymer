@@ -3,7 +3,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router'
 import HelloWorld from './components/HelloWorld';
-import VoteList from './components/VoteList';
+import VoteList from './components/Vote/VoteList';
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
