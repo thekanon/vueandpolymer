@@ -4,10 +4,24 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router'
 import HelloWorld from './components/HelloWorld';
 import VoteList from './components/Vote/VoteList';
+import VueApollo from 'vue-apollo'
+import ApolloClient from 'apollo-boost'
 
+
+Vue.use(VueApollo)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
-    // 0. 모듈 시스템 (예: vue-cli)을 이용하고 있다면, Vue와 Vue 라우터를 import 하세요
+
+
+const apolloClient = new ApolloClient({
+  // You should use an absolute URL here
+  uri: 'http://localhost:4000'
+})
+
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient,
+})
+// 0. 모듈 시스템 (예: vue-cli)을 이용하고 있다면, Vue와 Vue 라우터를 import 하세요
 // 그리고 `Vue.use(VueRouter)`를 호출하세요
 
 
@@ -38,6 +52,7 @@ const router = new VueRouter({
 // 이제 앱이 시작됩니다!
 new Vue({
   vuetify,
+  apolloProvider,
   router,
   render: h => h(App)
 }).$mount('#app')

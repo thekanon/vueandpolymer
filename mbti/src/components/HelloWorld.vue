@@ -1,6 +1,9 @@
 <template>
   <v-container>
     <div>
+      <p>
+      {{typeof hello == 'string' ? hello : hello[0].username}}
+    </p>
       <v-text-field v-model=vote.title label="제목"></v-text-field>
       <v-text-field v-model=vote.upperVote disabled=true label="상위 설문"></v-text-field>
       <v-text-field v-model=vote.lowerVote disabled=true label="하위 설문"></v-text-field>
@@ -24,10 +27,20 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 export default {
   name: "HelloWorld",
-
+  apollo: {
+    hello: gql`query {
+      hello :allUser{
+        id
+        email
+        username
+      }
+    }`
+  },
   data: () => ({
+    hello:'',
     vote : {
       title : "",
       description : "",
@@ -102,6 +115,7 @@ export default {
         href:"https://vuetifyjs.com/getting-started/frequently-asked-questions",
       },
     ],
+    
   }),
   methods: {
     addVote: function () {
@@ -111,10 +125,12 @@ export default {
         label : "보기"+this.optionCount,
         value : "",
       });
+      console.log(this.hello)
     },
     submit: function () {
       console.log(this.options)
       console.log(this.vote)
+      console.log(this.hello)
       fetch('http://1eed00.hopto.org:3000/viewNews')
         .then((response) => {
           if(response.ok){
@@ -129,6 +145,7 @@ export default {
           console.log(error)
         });
     }
-  }
+  },
+  
 };
 </script>
