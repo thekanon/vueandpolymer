@@ -4,7 +4,7 @@
       app
       color="white"
     >
-      <div class="pink--text font-weight-black" tile><subtitle-1>WATCHA!</subtitle-1></div>
+      <div class="pink--text font-weight-black" tile><subtitle-1>LOGO!</subtitle-1></div>
       <v-spacer><h1 class="pink--text">{{title}}</h1></v-spacer>
 
       <router-link to="/foo">
@@ -15,6 +15,11 @@
       <router-link to="/bar">
         <v-btn color=pink icon>
             <v-icon>mdi-book-plus</v-icon>
+        </v-btn>      
+      </router-link><br />
+      <router-link to="/test">
+        <v-btn color=pink icon>
+            <v-icon>mdi-account-box-outline</v-icon>
         </v-btn>      
       </router-link>
 
@@ -31,7 +36,7 @@
 <script>
 export default {
   data: () => ({
-      title:"MBTI Project"
+      title:"ERP Project"
   })
 }
 </script>
