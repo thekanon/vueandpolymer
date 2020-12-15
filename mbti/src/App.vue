@@ -4,7 +4,7 @@
       app
       color="white"
     >
-      <div class="pink--text font-weight-black" tile><subtitle-1>LOGO!</subtitle-1></div>
+      <div class="pink--text font-weight-black" tile><div name="logo">LOGO!</div></div>
       <v-spacer><h1 class="pink--text">{{title}}</h1></v-spacer>
 
       <router-link to="/foo">

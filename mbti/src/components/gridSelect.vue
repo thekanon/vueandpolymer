@@ -44,6 +44,7 @@
           :items="desserts"
           :items-per-page="dessertsIndex"
           :single-select="singleSelect"
+          :search="searchKey"
           item-key="Column1"
           show-select
           hide-default-footer
@@ -178,6 +179,7 @@ export default {
   data: () => ({
     title: "그리드 단건 선택 - radio & sort",
     singleSelect: true,
+    searchKey:'',
     selected: [],
     headers: [
       {
@@ -193,7 +195,7 @@ export default {
       { text: "직업", value: "Column3" ,width:300,},
       { text: "비고", value: "Column4" ,width:300,},
     ],
-    dessertsIndex: 0,
+    dessertsIndex: 30,
     desserts: [
       {
         name: 'Froz1en Yogurt',
@@ -439,17 +441,17 @@ export default {
   }),
   methods: {
     resetFilter  : function() { 
-
+      this.searchKey = '';
     },
     addRow  : function() { 
       this.desserts.push({name: 'Frozen Yogurt',chkYn: "1",Column1: "한1길123123123123123123동",Column2: "20011113",Column3: "학생",Column4: "300"})
       this.dessertsIndex++;
     },
     delRow  : function() { 
-
+      this.dessertsIndex++;
     },
     filter  : function() { 
-
+      this.searchKey = '2길';
     },
 
     radioClick : function() {
