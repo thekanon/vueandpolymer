@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-data-iterator hide-default-footer>
       <template v-slot:header>
         <div
@@ -74,10 +74,10 @@
         </v-data-table>
       </template>
       <template v-slot:footer>
-        <v-container class="grey lighten-5">
+        <v-container class="grey lighten-5 mt-3" fluid>
           <v-row no-gutters>
-            <v-col cols="12" sm="6" md="8">
-              <v-card class="pa-2">
+            <v-col cols="7">
+              <v-card class="pa-2 mr-2">
                             <div class="guidance-message-pnl state-highlight">
                                 <p>[그리드 다건 선택 및 컬럼 sort]</p>
                                 <ol>
@@ -118,8 +118,8 @@
                             </div>
               </v-card>
             </v-col>
-            <v-col cols="6" md="4">
-              <v-card class="pa-2">
+            <v-col cols="5">
+              <v-card class="pa-2  mr-2">
                 <div class="guidance-message-pnl state-highlight">
                                 <p>[행추가,행삭제]</p>
                                 <p>행추가 행삭제는 onsite 공통함수를 사용하여 구현할 수 있습니다.</p>
@@ -440,15 +440,20 @@ export default {
     ],
   }),
   methods: {
+    gotoEndRow: function () {
+      this.$nextTick(() => this.$vuetify.goTo(this.$el.querySelector(".v-data-table__wrapper").scrollHeight, { container: this.$el.querySelector(".v-data-table__wrapper")}))
+    },    
     resetFilter  : function() { 
       this.searchKey = '';
     },
     addRow  : function() { 
-      this.desserts.push({name: 'Frozen Yogurt',chkYn: "1",Column1: "한1길123123123123123123동",Column2: "20011113",Column3: "학생",Column4: "300"})
+      this.desserts.push({name: 'Frozen Yogurt',chkYn: "1",Column1: "한1길동1"+this.dessertsIndex,Column2: "20011113",Column3: "학생",Column4: "300"})
       this.dessertsIndex++;
+      this.gotoEndRow()
     },
     delRow  : function() { 
-      this.dessertsIndex++;
+      this.dessertsIndex--;
+      this.gotoEndRow()
     },
     filter  : function() { 
       this.searchKey = '2길';
