@@ -46,6 +46,7 @@
               solo-inverted
               v-if="searchVoteValue=='' || upperSelect.length !=0"
               :items="upperSelect"
+              v-model="searchVoteUpperValue"
               item-text="title"
               item-value="id"
               hide-details
@@ -58,6 +59,7 @@
               solo-inverted
               v-if="searchVoteValue=='' || lowerSelect.length !=0"
               :items="lowerSelect"
+              v-model="searchVoteLowerValue"
               item-text="title"
               item-value="id"
               hide-details
@@ -123,6 +125,9 @@ export default {
     searchVoteData:'',
     searchVoteValue:'',
     searchVoteText:'',
+    searchVoteUpperValue:'',
+    searchVoteLowerValue:'',
+
     searchLoading:false,
 
     upperSelect:[],
@@ -139,8 +144,8 @@ export default {
       },
       { text: "설문명", value: "title", width: 250 },
       { text: "설문내용", value: "description", width: 360 },
-      { text: "상위설문", value: "lowerVote", width: 160 },
-      { text: "하위설문", value: "upperVote", width: 160 },
+      { text: "상위설문", value: "upperVote", width: 160 },
+      { text: "하위설문", value: "lowerVote", width: 160 },
       { text: "문항1", value: "val1", width: 150 },
       { text: "문항2", value: "val2", width: 150 },
       { text: "문항3", value: "val3", width: 150 },
@@ -165,6 +170,23 @@ export default {
     voteData: [],
   }),
   watch: {
+    voteData(data){
+      if(data.length!=0){
+        data.forEach(element => {
+          let lowerArr = [];
+          element.lowerVote.forEach(key =>{
+            lowerArr.push(key.id);
+          });
+          element.lowerVote = [...lowerArr];
+
+          let upperArr = [];
+          element.upperVote.forEach(key =>{
+            upperArr.push(key.id);
+          });
+          element.upperVote = [...upperArr];
+        });
+      }
+    },
     searchVoteData(data){
       //조회 이후
       this.searchVoteText = data.length==1 ? data[0].title:'';
@@ -183,6 +205,9 @@ export default {
         this.viewHeaders = [];
       } 
     },
+  },
+  created: function () {
+    //complete
   },
   methods: {
     searchBlur(event){
@@ -212,7 +237,6 @@ export default {
           }
         `,
         variables : {
-
           // Use vue reactive properties here
               id: parseInt(keyword),
         },
@@ -223,10 +247,13 @@ export default {
     },
     async fetchEvents() {
       this.viewState = "loading";
-      const { data } = await this.$apollo.query({
+      console.log(this.searchVoteValue,this.searchVoteText,this.searchVoteUpperValue,this.searchVoteLowerValue)
+
+      const { data } = await this.$apollo.query( 
+      {
         query: gql`
-          query {
-            allVote {
+          query getVote($id: Int, $upperVote: Int, $lowerVote: Int) {
+            getVote(id: $id, upperVote: $upperVote, lowerVote: $lowerVote){
               id
               title
               description
@@ -235,9 +262,11 @@ export default {
               }
               upperVote {
                 id
+                title
               }
               lowerVote {
                 id
+                title
               }
               val1
               val2
@@ -262,9 +291,15 @@ export default {
             }
           }
         `,
+        variables : {
+          id: parseInt(this.searchVoteValue),
+          upperVote: parseInt(this.searchVoteUpperValue),
+          lowerVote: parseInt(this.searchVotelowerValue)
+        },
+
       });
       this.viewState = "afterSubmit";
-      this.voteData = data.allVote;
+      this.voteData = data.getVote;
       console.log(this.voteData)
     },
     submit: function() {

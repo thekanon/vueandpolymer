@@ -439,6 +439,12 @@ export default {
       },
     ],
   }),
+  created: function (){
+    for(let i=0;i<100;i++){
+      this.desserts.push({name: 'Frozen Yogurt',chkYn: "1",Column1: "한1길동1"+this.dessertsIndex,Column2: "20011113",Column3: "학생",Column4: "300"})
+      this.dessertsIndex++;
+    }
+  },
   methods: {
     gotoEndRow: function () {
       this.$nextTick(() => this.$vuetify.goTo(this.$el.querySelector(".v-data-table__wrapper").scrollHeight, { container: this.$el.querySelector(".v-data-table__wrapper")}))
@@ -447,9 +453,9 @@ export default {
       this.searchKey = '';
     },
     addRow  : function() { 
-      this.desserts.push({name: 'Frozen Yogurt',chkYn: "1",Column1: "한1길동1"+this.dessertsIndex,Column2: "20011113",Column3: "학생",Column4: "300"})
-      this.dessertsIndex++;
-      this.gotoEndRow()
+        this.desserts.push({name: 'Frozen Yogurt',chkYn: "1",Column1: "한1길동1"+this.dessertsIndex,Column2: "20011113",Column3: "학생",Column4: "300"})
+        this.dessertsIndex++;
+        this.gotoEndRow()
     },
     delRow  : function() { 
       this.dessertsIndex--;
