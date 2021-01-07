@@ -6,6 +6,7 @@ import HelloWorld from './components/HelloWorld';
 import VoteList from './components/Vote/VoteList';
 import gridSelect from './components/ErpPage/gridSelect';
 import gridSearch from './components/ErpPage/gridSearch';
+import litPage from './components/ErpPage/litPage';
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
 
@@ -33,6 +34,8 @@ const Foo = VoteList
 const Bar = HelloWorld
 const Test1 = gridSelect
 const Test2 = gridSearch
+const LitPage = litPage
+
 // 2. 라우트를 정의하세요.
 // Each route should map to a component. The "component" can
 // 각 라우트는 반드시 컴포넌트와 매핑되어야 합니다.
@@ -42,6 +45,7 @@ const routes = [
   { path: '/foo', component: Foo },
   { path: '/test1', component: Test1 },
   { path: '/test2', component: Test2 },
+  { path: '/test3', component: LitPage },
   { path: '/bar', component: Bar }
 ]
 

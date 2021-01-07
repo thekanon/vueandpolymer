@@ -13,6 +13,7 @@
       >
         조회 및 수정 삭제 페이지
       </div>
+      <my-element></my-element>
       <template>
         <v-toolbar class="mb-2" color="#f4f0ed">
           <v-text-field
@@ -86,13 +87,29 @@
             </v-btn>
           </div>
         </v-toolbar>
+            <v-toolbar class="mb-2" flat>
+              <v-btn icon>
+                <v-icon color="orange">mdi-circle-outline</v-icon>
+              </v-btn>
+              <v-toolbar-title>MBTI 설문조사</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-btn dark color="#7a99ac" class="mr-2">
+                행추가
+              </v-btn>
+              <v-btn dark color="#7a99ac" class="mr-2">
+                행삭제
+              </v-btn >
+            </v-toolbar>
+
         <template>
           <v-data-table
             dense
+            @click:row="clickRow"
             :height="height"
             :headers="viewHeaders"
             :items="voteData"
             :items-per-page="15"
+            :item-class="itemRowBackground"
             :loading="viewState=='loading'"
             :hide-default-footer="viewFooter"
             loading-text="Loading... Please wait"
@@ -111,10 +128,17 @@
 .v-toolbar {
   font-weight: bold;
 }
+.v-data-table >>> .style-1 {
+  background-color: rgb(215,215,44)
+}
+.v-data-table >>> .style-2 {
+  background-color: rgb(114,114,67)
+}
 </style>
 
 <script>
 import gql from "graphql-tag";
+import '../LitElement/my-element.js';
 export default {
   name: "HelloWorld",
   data: () => ({
@@ -133,6 +157,8 @@ export default {
     upperSelect:[],
     lowerSelect:[],
     
+    oldCurrentRow:-1,
+    newCurrentRow:-1,
 
     headers: [
       {
@@ -173,6 +199,7 @@ export default {
     voteData(data){
       if(data.length!=0){
         data.forEach(element => {
+          //상위,하위코드 세팅
           let lowerArr = [];
           element.lowerVote.forEach(key =>{
             lowerArr.push(key.id);
@@ -210,6 +237,17 @@ export default {
     //complete
   },
   methods: {
+    itemRowBackground (item) {
+      return item.currentRow ? 'style-1' : ''
+    },
+    clickRow(event){
+      this.voteData.map((element)=> {
+        element.currentRow = false;
+      });
+      event.currentRow = true
+      event.id +=1;
+      event.id -=1;
+    },
     searchBlur(event){
       if(event.target.value !="")
         this.searchVoteEvents(event.target.value);
@@ -248,7 +286,6 @@ export default {
     async fetchEvents() {
       this.viewState = "loading";
       console.log(this.searchVoteValue,this.searchVoteText,this.searchVoteUpperValue,this.searchVoteLowerValue)
-
       const { data } = await this.$apollo.query( 
       {
         query: gql`
@@ -299,7 +336,15 @@ export default {
 
       });
       this.viewState = "afterSubmit";
+      data.getVote.forEach((element,index) => {
+          //index 및 상태값 세팅
+          element.rowIndex = index;
+          element.rowFlag = 'R';
+      });
       this.voteData = data.getVote;
+
+
+
       console.log(this.voteData)
     },
     submit: function() {
