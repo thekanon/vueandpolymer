@@ -133,6 +133,7 @@
     font-size: 0.9em;
     border-radius: 2px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .grid-pnl button:hover{
