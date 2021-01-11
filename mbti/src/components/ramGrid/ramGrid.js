@@ -64,13 +64,13 @@ class gridU {
     return (this.dataSet[row][col])
   }
 
-  // setCellEditable(row,col,isEdit){
-  //   row
-  //   col
-  //   isEdit
-  //   console.log(this._template.gridBody)
+  setCellEditable(row,col,isEdit){
+    row
+    col
+    isEdit
+    console.log(this._template.gridBody)
     
-  // }
+  }
 
 
 
