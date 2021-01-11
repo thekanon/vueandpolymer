@@ -9,7 +9,8 @@ import gridSearch from './components/ErpPage/gridSearch';
 import litPage from './components/ErpPage/litPage';
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
-
+import ramGridTest from './components/ErpPage/ramGridTest';
+// import menuTest from './components/ErpPage/*';
 
 Vue.use(VueApollo)
 Vue.use(VueRouter)
@@ -35,6 +36,9 @@ const Bar = HelloWorld
 const Test1 = gridSelect
 const Test2 = gridSearch
 const LitPage = litPage
+const Test4 = ramGridTest
+
+// console.log(menuTest);
 
 // 2. 라우트를 정의하세요.
 // Each route should map to a component. The "component" can
@@ -46,6 +50,7 @@ const routes = [
   { path: '/test1', component: Test1 },
   { path: '/test2', component: Test2 },
   { path: '/test3', component: LitPage },
+  { path: '/test4', component: Test4 },
   { path: '/bar', component: Bar }
 ]
 
@@ -57,7 +62,8 @@ const router = new VueRouter({
 })
 
 // 4. 루트 인스턴스를 만들고 mount 하세요.
-// router와 router 옵션을 전체 앱에 주입합니다.
+
+  // router와 router 옵션을 전체 앱에 주입합니다.
 // 이제 앱이 시작됩니다!
 new Vue({
   vuetify,
