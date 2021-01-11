@@ -22,15 +22,9 @@
             <v-icon>mdi-account-box-outline</v-icon>
         </v-btn>      
       </router-link>
-
-
-
-
     </v-app-bar>
-
     <v-main>
         <router-view></router-view>
-
     </v-main>
   </v-app>
 
@@ -39,7 +33,10 @@
 export default {
   data: () => ({
       title:"ERP Project"
-  })
+  }),
+  mounted : function(){
+    console.log(this)
+  },
 }
 </script>
 <style scoped>

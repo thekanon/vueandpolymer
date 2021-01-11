@@ -63,21 +63,6 @@ class gridU {
     return (this.dataSet[row][col])
   }
 
-  setCellEditable(row,col,isEdit){
-    
-  }
-
-
-
-
-
-
-
-
-
-
-
-
   onEvent(event, row, col) {
     const callbackSet = this.eventSet.filter(cell => cell.row == row && cell.col == col);
     if (callbackSet.length == 0) return false;

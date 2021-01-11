@@ -2,72 +2,67 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router'
-import HelloWorld from './components/HelloWorld';
-import VoteList from './components/Vote/VoteList';
-import gridSelect from './components/ErpPage/gridSelect';
-import gridSearch from './components/ErpPage/gridSearch';
-import litPage from './components/ErpPage/litPage';
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
-import ramGridTest from './components/ErpPage/ramGridTest';
-import menuTest from './components/ErpPage/*';
-
+// 0. 모듈 시스템 (예: vue-cli)을 이용하고 있다면, Vue와 Vue 라우터를 import
+// 그리고 `Vue.use(VueRouter)`를 호출
 Vue.use(VueApollo)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 
+
 const apolloClient = new ApolloClient({
-  // You should use an absolute URL here
   uri: 'http://localhost:4000'
 })
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
 })
-// 0. 모듈 시스템 (예: vue-cli)을 이용하고 있다면, Vue와 Vue 라우터를 import 하세요
-// 그리고 `Vue.use(VueRouter)`를 호출하세요
 
 
-// 1. 라우트 컴포넌트를 정의하세요.
-// 아래 내용들은 다른 파일로부터 가져올 수 있습니다.
-const Foo = VoteList
-const Bar = HelloWorld
-const Test1 = gridSelect
-const Test2 = gridSearch
-const LitPage = litPage
-const Test4 = ramGridTest
-
-// console.log(menuTest);
-
-// 2. 라우트를 정의하세요.
-// Each route should map to a component. The "component" can
-// 각 라우트는 반드시 컴포넌트와 매핑되어야 합니다.
-// "component"는 `Vue.extend()`를 통해 만들어진
-// 실제 컴포넌트 생성자이거나 컴포넌트 옵션 객체입니다.
-const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/test1', component: Test1 },
-  { path: '/test2', component: Test2 },
-  { path: '/test3', component: LitPage },
-  { path: '/test4', component: Test4 },
-  { path: '/bar', component: Bar }
+// 1. 라우트 컴포넌트 경로 및 실제 파일 경로 json으로 생성
+const menuJSON = [
+  { path: '/foo', component: './components/HelloWorld.vue' },
+  { path: '/bar', component: './components/Vote/VoteList.vue' },
+  { path: '/test1', component: './components/ErpPage/gridSelect.vue' },
+  { path: '/test2', component: './components/ErpPage/gridSearch.vue' },
+  { path: '/test3', component: './components/ErpPage/litPage.vue' },
+  { path: '/test4', component: './components/ErpPage/ramGridTest.vue' },
+  { path: '/test5', component: './components/ErpPage/searchTable.vue' },
+  { path: '/test6', component: './components/ErpPage/test.vue' },
 ]
 
-// 3. `routes` 옵션과 함께 router 인스턴스를 만드세요.
-// 추가 옵션을 여기서 전달해야합니다.
-// 지금은 간단하게 유지하겠습니다.
-const router = new VueRouter({
-  routes // `routes: routes`의 줄임
-})
-
-// 4. 루트 인스턴스를 만들고 mount 하세요.
-
-  // router와 router 옵션을 전체 앱에 주입합니다.
-// 이제 앱이 시작됩니다!
-new Vue({
-  vuetify,
-  apolloProvider,
-  router,
-  render: h => h(App)
-}).$mount('#app')
+// 2. 라우트 정의
+// 각 라우트는 반드시 컴포넌트와 매핑되어야 함.
+// "component"는 `Vue.extend()`를 통해 만들어진
+// 실제 컴포넌트 생성자이거나 컴포넌트 옵션 객체여야함.
+async function load(){
+  const routes=[]
+  
+  //ncrm처럼 json을 받아 직접 컨버팅함
+  menuJSON.forEach(element => {
+    routes.push(
+      {
+        path:element.path,
+        component:() => import(`${element.component}`)
+      }
+    )
+  });
+  // 3. `routes` 옵션과 함께 router 인스턴스 생성.
+  // 추가 옵션을 여기서 전달
+  const router = new VueRouter({
+    routes // `routes: routes`의 줄임
+  })
+  
+  // 4. 루트 인스턴스를 만들고 mount
+  
+  // router와 router 옵션을 전체 앱에 주입.
+  new Vue({
+    vuetify,
+    apolloProvider,
+    router,
+    render: h => h(App)
+  }).$mount('#app')
+}
+load();
