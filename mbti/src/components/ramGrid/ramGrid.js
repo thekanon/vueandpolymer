@@ -4,6 +4,7 @@ class gridU {
     this._template = _template;
     this.dataSet = [];
     this.eventSet = [];
+    this.editableCellSet = [];
     this._template.gridBody.map(
       cell => {
         if (cell.type == null) {
@@ -63,9 +64,13 @@ class gridU {
     return (this.dataSet[row][col])
   }
 
-  setCellEditable(row,col,isEdit){
+  // setCellEditable(row,col,isEdit){
+  //   row
+  //   col
+  //   isEdit
+  //   console.log(this._template.gridBody)
     
-  }
+  // }
 
 
 

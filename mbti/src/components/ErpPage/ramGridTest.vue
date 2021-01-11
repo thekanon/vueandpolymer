@@ -70,6 +70,7 @@ export default {
         widgetGrid_GridU101.addRow(['setCell','','','',''])
         widgetGrid_GridU101.onClick(0,4,'addEmptyRow_toGrid1')
         widgetGrid_GridU101.onClick(2,4,'deleteRow_toGrid1')
+        widgetGrid_GridU101.setCellEditable(3,1,true)
     },
     methods: {
         GridU101_Event(row,col){
