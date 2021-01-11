@@ -5,9 +5,7 @@
       color="white"
     >
       <div class="pink--text font-weight-black" tile><div name="logo">LOGO!</div></div>
-      <v-spacer><h1 class="pink--text">{{title}}</h1></v-spacer>
-
-      <router-link to="/foo">
+      <v-spacer><h1 class="pink--text">{{title}}</h1></v-spacer>      <router-link to="/foo">
         <v-btn color=pink icon>
             <v-icon>mdi-home-variant-outline</v-icon>
         </v-btn>      
@@ -30,9 +28,13 @@
 
 </template>
 <script>
+import {Menu} from './components/menu/menu'
+const menu = new Menu()
+const menuJSON = menu.menuJSON;
 export default {
   data: () => ({
-      title:"ERP Project"
+      title:"ERP Project",
+      menu : menuJSON,
   }),
   mounted : function(){
     console.log(this)

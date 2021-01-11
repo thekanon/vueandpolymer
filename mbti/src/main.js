@@ -4,6 +4,8 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router'
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
+
+import {Menu} from './components/menu/menu'
 // 0. 모듈 시스템 (예: vue-cli)을 이용하고 있다면, Vue와 Vue 라우터를 import
 // 그리고 `Vue.use(VueRouter)`를 호출
 Vue.use(VueApollo)
@@ -22,21 +24,14 @@ const apolloProvider = new VueApollo({
 
 
 // 1. 라우트 컴포넌트 경로 및 실제 파일 경로 json으로 생성
-const menuJSON = [
-  { path: '/foo', component: './components/HelloWorld.vue' },
-  { path: '/bar', component: './components/Vote/VoteList.vue' },
-  { path: '/test1', component: './components/ErpPage/gridSelect.vue' },
-  { path: '/test2', component: './components/ErpPage/gridSearch.vue' },
-  { path: '/test3', component: './components/ErpPage/litPage.vue' },
-  { path: '/test4', component: './components/ErpPage/ramGridTest.vue' },
-  { path: '/test5', component: './components/ErpPage/searchTable.vue' },
-  { path: '/test6', component: './components/ErpPage/test.vue' },
-]
-
+let menu = new Menu()
+// const menuJSON = menu.menuJSON
+// console.log(menuJSON)
 // 2. 라우트 정의
 // 각 라우트는 반드시 컴포넌트와 매핑되어야 함.
 // "component"는 `Vue.extend()`를 통해 만들어진
 // 실제 컴포넌트 생성자이거나 컴포넌트 옵션 객체여야함.
+const menuJSON = menu.menuJSON;
 async function load(){
   const routes=[]
   
