@@ -10,7 +10,7 @@ import litPage from './components/ErpPage/litPage';
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
 import ramGridTest from './components/ErpPage/ramGridTest';
-// import menuTest from './components/ErpPage/*';
+import menuTest from './components/ErpPage/*';
 
 Vue.use(VueApollo)
 Vue.use(VueRouter)

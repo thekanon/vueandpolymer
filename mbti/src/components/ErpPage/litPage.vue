@@ -1,5 +1,15 @@
 <template>
     <div>
+      <table class="searchTable">
+          <colgroup>
+              <col width="*">
+              <col width="5%">
+          </colgroup>
+          <tr>
+              <th></th>
+              <th><button @click="resetFilterData" type="button" class="doaction" id="btnFilter1">조회</button></th>
+          </tr>
+      </table>      
       <table>
           <caption>● 그리드 컴포넌트</caption>
           <colgroup>
@@ -80,6 +90,11 @@ export default {
   orgData: ''
 
   }),
+  mounted : function(){
+    for(let i=0;i<100;i++){
+      this.sampleData.push({"first_name":"Spike","last_name":"Cregan","email":"scregan8@baidu.com","gender":"Male","ip_address":"58.217.162.121"});
+    }
+  },
   watch: {
     sampleData(data){
       console.log(data);
@@ -101,7 +116,7 @@ export default {
       this.orgData = this.sampleData
 
       this.sampleData = this.sampleData.filter(item => {
-        if (item.gender=='Male') {
+        if (item.gender=='Female') {
           return true;
         }
         return false;

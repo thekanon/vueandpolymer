@@ -11,7 +11,7 @@
             font-weight: bold;
           "
       >
-        조회 및 수정 삭제 페이지
+        조회 및 수정 삭제 페이지 입니다
       </div>
       <my-element></my-element>
       <template>
@@ -139,6 +139,7 @@
 <script>
 import gql from "graphql-tag";
 import '../LitElement/my-element.js';
+
 export default {
   name: "HelloWorld",
   data: () => ({
