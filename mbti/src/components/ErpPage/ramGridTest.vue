@@ -75,7 +75,7 @@ export default {
     methods: {
         GridU101_Event(row,col){
             const e = widgetGrid_GridU101.onEvent(event,row,col);
-            if(e)this[e](row,col)
+            if(e)this[e](row,col )
         },
         addEmptyRow_toGrid1(row) {
           widgetGrid_GridU100.addEmptyRow(widgetGrid_GridU101.getCell(row,3));
