@@ -447,12 +447,7 @@ export default {
   },
   methods: {
     gotoEndRow: function () {
-      this.$nextTick(
-        () => this.$vuetify.goTo(
-            this.$el.querySelector(".v-data-table__wrapper").scrollHeight, {
-              container: this.$el.querySelector(".v-data-table__wrapper")
-           })
-      )
+      this.$nextTick(() => this.$vuetify.goTo(this.$el.querySelector(".v-data-table__wrapper").scrollHeight, { container: this.$el.querySelector(".v-data-table__wrapper")}))
     },    
     resetFilter  : function() { 
       this.searchKey = '';
@@ -462,11 +457,11 @@ export default {
         this.dessertsIndex++;
         this.gotoEndRow()
     },
-    delRow  : function() {
+    delRow  : function() { 
       this.dessertsIndex--;
       this.gotoEndRow()
     },
-    filter  : function() {
+    filter  : function() { 
       this.searchKey = '2길';
     },
 

@@ -38,10 +38,10 @@ async function load(){
   //ncrm처럼 json을 받아 직접 컨버팅함
   menuJSON.forEach(element => {
     routes.push(
-      {
-        path:element.path,
-        component:() => import(`${element.component}`)
-      }
+    {
+      path:element.path,
+      component:() => import(`${element.component}`)
+    }
     )
   });
   // 3. `routes` 옵션과 함께 router 인스턴스 생성.

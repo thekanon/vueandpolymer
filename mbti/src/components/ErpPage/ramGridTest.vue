@@ -35,7 +35,7 @@ let widgetGrid_GridU100 = naw.gridU('GridU101',{
             {colName:"cell5"}]
     });
 let widgetGrid_GridU101 = naw.gridU('GridU100',{
-        gridHeight:'300',
+        gridHeight:'1000',
         gridHeader:[
             {name:"메서드이름",width:"18.0%"},
             {name:"row",width:"6.0%"},

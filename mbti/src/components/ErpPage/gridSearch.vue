@@ -14,6 +14,11 @@
         조회 및 수정 삭제 페이지 입니다
       </div>
       <my-element></my-element>
+        <div id='test_contaner'>
+            <RamGrid grid-id='GridU100' 
+            :grid-data ='widget.grid.GridU100'
+            />
+        </div>
       <template>
         <v-toolbar class="mb-2" color="#f4f0ed">
           <v-text-field
@@ -139,8 +144,32 @@
 <script>
 import gql from "graphql-tag";
 import '../LitElement/my-element.js';
+import RamGrid from '../ramGrid/RamGrid.vue';
+import naw from '../ramGrid/ramGrid.js'
+
+let widgetGrid_GridU100 = naw.gridU('GridU101',{
+        bodyWidth:'auto',
+        gridHeight:'250',
+        gridHeader:[
+            {name:"타이틀1",width:"25.0%"},
+            {name:"타이틀2",width:"20.0%"},
+            {name:"타이틀3",width:"20.0%"},
+            {name:"타이틀4",width:"20.0%"},
+            {name:"타이틀5",width:"15.0%"}],
+        gridBody:[
+            {colName:"cell1"},
+            {colName:"cell2"},
+            {colName:"cell3"},
+            {colName:"cell4"},
+            {colName:"cell5"}]
+    });
 
 export default {
+  components: { RamGrid },
+  mounted(){
+    widgetGrid_GridU100.addEmptyRow(); 
+    widgetGrid_GridU100.setCell(0,0,'te')
+  },
   name: "HelloWorld",
   data: () => ({
     height: null,
@@ -195,6 +224,11 @@ export default {
       { text: "문항20", value: "val20", width: 150 },
     ],
     voteData: [],
+    widget: {
+                grid: {
+                    GridU100: widgetGrid_GridU100,
+                }
+            },
   }),
   watch: {
     voteData(data){
@@ -235,7 +269,7 @@ export default {
     },
   },
   created: function () {
-
+    //complete
   },
   methods: {
     itemRowBackground (item) {

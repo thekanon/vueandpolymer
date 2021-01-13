@@ -53,3 +53,6 @@ frontEnd 개발환경 구축 방법
 2. 이후 협업 링크 접속/전달
 예)
 https://prod.liveshare.vsengsaas.visualstudio.com/join?1A2951BE76E31BB534B0A77F1A9D19BE3C04
+
+메뉴 등록 방법
+1. 
