@@ -5,8 +5,8 @@
       {{typeof hello == 'string' ? hello : hello[0].email}}
     </p>
       <v-text-field v-model=vote.title label="제목"></v-text-field>
-      <v-text-field v-model=vote.upperVote disabled=true label="상위 설문"></v-text-field>
-      <v-text-field v-model=vote.lowerVote disabled=true label="하위 설문"></v-text-field>
+      <v-text-field v-model=vote.upperVote disabled label="상위 설문"></v-text-field>
+      <v-text-field v-model=vote.lowerVote disabled label="하위 설문"></v-text-field>
       <v-text-field v-model=vote.description label="내용"></v-text-field>
 
       <v-text-field 

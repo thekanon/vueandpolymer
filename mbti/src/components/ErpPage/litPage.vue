@@ -27,7 +27,6 @@
               <th><button @click="resetFilterData" type="button" class="doaction" id="btnFilter1">필터해제</button></th>
           </tr>
       </table>      
-      <!-- <button @click="addRow">행추가</button> -->
       <lit-grid 
         :bindRef ='sampleDataString' 
         :flag='gridType'
@@ -74,7 +73,7 @@ export default {
 
   data: () => ({
     gridType:"grid",
-    sampleDataString: '1',
+    sampleDataString: '',
     sampleData: [{"first_name":"Brendin","last_name":"Hegdonne","email":"bhegdonne0@cafepress.com","gender":"Male","ip_address":"142.101.100.170"},
 {"first_name":"Bailie","last_name":"Renhard","email":"brenhard1@vimeo.com","gender":"Male","ip_address":"18.121.110.122"},
 {"first_name":"Amandy","last_name":"Blair","email":"ablair2@newyorker.com","gender":"Female","ip_address":"230.214.198.165"},
@@ -91,9 +90,6 @@ export default {
 
   }),
   mounted : function(){
-    for(let i=0;i<100;i++){
-      this.sampleData.push({"first_name":"Spike","last_name":"Cregan","email":"scregan8@baidu.com","gender":"Male","ip_address":"58.217.162.121"});
-    }
   },
   watch: {
     sampleData(data){

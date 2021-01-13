@@ -43,13 +43,22 @@ let widgetGrid_GridU101 = naw.gridU('GridU100',{
             {name:"data",width:"35.0%"},
             {name:"실행",width:"35.0%"}],
         gridBody:[
-            {colName:"cell1"},
-            {colName:"cell2"},
-            {colName:"cell3"},
-            {colName:"cell4",editable:true},
-            {colName:"cell5",type:'button',options:{btnNm:'실행하기'}}]
+            {colName:"method"},
+            {colName:"row",editable:true},
+            {colName:"col",editable:true},
+            {colName:"data",editable:true},
+            {colName:"run",type:'button',options:{btnNm:'실행하기'}}]
     });
 
+    widgetGrid_GridU101.addRow(['addEmptyRow','','','',''])
+    widgetGrid_GridU101.addRow(['addRow','','','',''])
+    widgetGrid_GridU101.addRow(['deleteRow','','','',''])
+    widgetGrid_GridU101.addRow(['setCell','','','',''])
+    widgetGrid_GridU101.onClick(0,4,'addEmptyRow_toGrid1')
+    widgetGrid_GridU101.onClick(2,4,'deleteRow_toGrid1')
+    widgetGrid_GridU101.onClick(3,4,'setCell_toGrid1')
+    widgetGrid_GridU101.setCellEditable(3,1,true)
+    
 export default {
     components: { RamGrid },
     data() {
@@ -64,30 +73,34 @@ export default {
         }
     },
     mounted(){
-        widgetGrid_GridU101.addRow(['addEmptyRow','','','',''])
-        widgetGrid_GridU101.addRow(['addRow','','','',''])
-        widgetGrid_GridU101.addRow(['deleteRow','','','',''])
-        widgetGrid_GridU101.addRow(['setCell','','','',''])
-        widgetGrid_GridU101.onClick(0,4,'addEmptyRow_toGrid1')
-        widgetGrid_GridU101.onClick(2,4,'deleteRow_toGrid1')
-        widgetGrid_GridU101.setCellEditable(3,1,true)
+        console.log('mount')
+    },
+    created(){
+        console.log('created')
+    },
+    updated(){
+        console.log('updated')
     },
     methods: {
         GridU101_Event(row,col){
             const e = widgetGrid_GridU101.onEvent(event,row,col);
             if(e)this[e](row,col )
         },
-        addEmptyRow_toGrid1(row) {
-          widgetGrid_GridU100.addEmptyRow(widgetGrid_GridU101.getCell(row,3));
+        addEmptyRow_toGrid1(rowNum) {
+          widgetGrid_GridU100.addEmptyRow(widgetGrid_GridU101.getCell(rowNum,'data'));
           widgetGrid_GridU101.setCell(0,3,'');
         },
-        setCell(row,col,data){
-            widgetGrid_GridU100.setCell(row,col,data);
+        setCell_toGrid1(){
+            widgetGrid_GridU100.setCell(
+                widgetGrid_GridU101.getCell(3,'row'),
+                widgetGrid_GridU101.getCell(3,'col'),
+                widgetGrid_GridU101.getCell(3,'data'),
+            );
         },
-        deleteRow_toGrid1(row){
-            widgetGrid_GridU100.deleteRow(widgetGrid_GridU101.getCell(row,3));
+        deleteRow_toGrid1(rowNum){
+            widgetGrid_GridU100.deleteRow(widgetGrid_GridU101.getCell(rowNum,'data'));
           widgetGrid_GridU101.setCell(2,3,'');
-        },
+        }
     }
 }
 </script>

@@ -42,6 +42,7 @@ export default {
 }
 </script>
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Pirata+One&family=Do+Hyeon&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 .spacer {
     text-align: center;
 }

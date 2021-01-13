@@ -27,7 +27,6 @@ class MyElement extends LitElement {
     super.connectedCallback()
 
     //상위 컴포넌트의 데이터를 가져옴.
-    this.json =  this.parentElement.__vue__ ? this.parentElement.__vue__.sampleData : []; 
     this.makeGrid();
   }
   static get properties() {
@@ -87,7 +86,7 @@ class MyElement extends LitElement {
         `
   }
   makeGrid() {
-    this.json =  this.parentElement ? this.parentElement.__vue__.sampleData : []; 
+    this.json =  this.bindRef ? this.bindRef : []; 
 
     this.body = [];
     for(let i=0;i<this.json.length;i++){

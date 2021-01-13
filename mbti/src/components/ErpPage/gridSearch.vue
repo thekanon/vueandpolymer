@@ -235,7 +235,7 @@ export default {
     },
   },
   created: function () {
-    //complete
+
   },
   methods: {
     itemRowBackground (item) {
